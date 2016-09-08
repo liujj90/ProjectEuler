@@ -239,3 +239,23 @@ def multiplyLargestStr(sequence, length):
 			largestseq = newseq
 		start += 1
 	return (largestseq, multiplyListItems(largestseq))
+
+'''
+Problem 9
+A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+
+a2 + b2 = c2
+For example, 32 + 42 = 9 + 16 = 25 = 52.
+
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc.
+'''
+def pythagoras(a,b):
+	return (a**2 +b**2)**.5
+
+def findPythaTriplet(summed):
+	for a in range(1, summed):
+		for b in range(1, summed):
+			c = pythagoras(a,b)
+			if summed== a+b+c:
+				return a*b*c
