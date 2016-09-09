@@ -259,3 +259,22 @@ def findPythaTriplet(summed):
 			c = pythagoras(a,b)
 			if summed== a+b+c:
 				return a*b*c
+
+
+'''
+Problem 10
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million.
+'''
+
+# use isprime function 
+
+def sumprimes(limit):
+	x = 0
+	for i in range(1,limit):
+		if isprime(i)== True:
+			x += i
+	return x
+
+
