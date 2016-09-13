@@ -606,3 +606,44 @@ string = '''37107287533902102798797998220837590246510135740250
 numbers = string.splitlines() # generate list of strings
 numbers = [int(x) for x in numbers] # convert to integers
 first10 = str(sum(numbers))[0:10] # first 10 numbers of sum in string format
+
+'''
+Longest Collatz sequence
+Problem 14
+The following iterative sequence is defined for the set of positive integers:
+
+n → n/2 (n is even)
+n → 3n + 1 (n is odd)
+
+Using the rule above and starting with 13, we generate the following sequence:
+
+13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+Which starting number, under one million, produces the longest chain?
+
+NOTE: Once the chain starts the terms are allowed to go above one million.'''
+
+def collatz(number):
+	coll= [number]
+	cur_number = number
+	while cur_number>1:
+		pass
+		if cur_number % 2 ==0:
+			cur_number= cur_number/2
+			coll.append(cur_number)
+		else:
+			cur_number= 3*cur_number+1
+			coll.append(cur_number)
+	return coll
+
+def longestColl(limit):
+	length = 0
+	coll = []
+	for i in range(2, limit):
+		cur_coll= collatz(i)
+		cur_length = len(cur_coll)
+		if  cur_length > length:
+			length = cur_length
+			coll = cur_coll
+	return (length, coll[0]) # returns length and starting number
