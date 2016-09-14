@@ -647,3 +647,26 @@ def longestColl(limit):
 			length = cur_length
 			coll = cur_coll
 	return (length, coll[0]) # returns length and starting number
+
+'''
+Problem 15
+Lattice paths
+Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
+
+How many such routes are there through a 20×20 grid?
+'''
+
+# code here inspired by: http://code.jasonbhill.com/python/project-euler-problem-15/
+# in a cube, S(i,j) =  S(i, j-1) + S(i-1, j) for 0 < i < j
+# S(i,j) = 2S(i, j-1) if i = j
+
+def latticePath(size):
+	numberPaths = [1] * size # create a list for length of square - ie. 20 x 20 = 20 items in list
+	for i in range(size): # for all 1 square increments
+		for j in range(i): # side paths -- where 0 < i < j
+			numberPaths[j] = numberPaths[j] + numberPaths[j-1]
+			print ('j =', numberPaths[:j+1])
+					# after finding size of non-square paths
+		numberPaths[i] = 2 * numberPaths[i - 1] # when i = j
+		print ('i =', numberPaths[:i+1])
+	return numberPaths[size -1]
