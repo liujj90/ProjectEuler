@@ -880,3 +880,29 @@ def factorial(number):
 	for digit in total:
 		addition += int(digit) 
 	return addition
+
+'''
+Amicable numbers
+Problem 21
+Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
+If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
+
+For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+
+Evaluate the sum of all the amicable numbers under 10000. '''
+
+
+def factors(number):
+	fac = []
+	for i in range(1, number):
+		if number % i == 0:
+			fac.append(i)
+	return sum(fac)
+
+def amicable(limit):
+	total = 0
+	for a in range(1, limit):
+		da = factors(a)
+		if factors(da) == a and da > a: # da cant be a, should be larger
+			total += da + a
+	return total 
