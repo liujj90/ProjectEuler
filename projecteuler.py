@@ -906,3 +906,31 @@ def amicable(limit):
 		if factors(da) == a and da > a: # da cant be a, should be larger
 			total += da + a
 	return total 
+
+
+'''
+Names scores
+Problem 22
+Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
+
+For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714.
+
+What is the total of all the name scores in the file?'''
+
+with open('p022_names.txt', 'r') as f:
+	filenames = f.read().split('","')
+filenames = [''.join(c for c in n if c!= '"') for n in filenames] # remove first and last ""
+filenames = sorted(filenames)
+
+alph = ['\"','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J','K','L', 'M','N', 'O', 'P','Q', 'R', 'S', 'T', 'U','V', 'W', 'X','Y','Z']
+num = range(0,27)
+scores = {key: score for key, score in zip(alph, num)}
+
+count = 0
+currcount = 0
+for index, name in enumerate(filenames):
+	for alphabet in name:
+		currcount += scores.get(alphabet)
+	currcount *= index+1
+	count += currcount
+	currcount = 0
